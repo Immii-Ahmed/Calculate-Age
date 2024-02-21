@@ -19,14 +19,19 @@ function calculateAge() {
     let ageYears = currentDate.getFullYear() - birthdate.getFullYear();
 
     // Adjust the age based on the month and day
-    if (currentDate.getMonth() < birthdate.getMonth() ||
-        (currentDate.getMonth() === birthdate.getMonth() && currentDate.getDate() < birthdate.getDate())) {
+    if (
+      currentDate.getMonth() < birthdate.getMonth() ||
+      (currentDate.getMonth() === birthdate.getMonth() && currentDate.getDate() < birthdate.getDate())
+    ) {
       ageYears--;
     }
 
-    // Calculate the remaining days until the next birthday
+    // Calculate the next birthday
     const nextBirthday = new Date(currentDate.getFullYear(), birthdate.getMonth(), birthdate.getDate());
-    const daysUntilNextBirthday = Math.ceil((nextBirthday - currentDate) / (24 * 60 * 60 * 1000));
+
+    // Calculate the remaining days until the next birthday
+    const daysUntilNextBirthday =
+      Math.ceil((nextBirthday.getTime() - currentDate.getTime()) / (24 * 60 * 60 * 1000));
 
     // Display the result
     const resultElement = document.getElementById('result');
